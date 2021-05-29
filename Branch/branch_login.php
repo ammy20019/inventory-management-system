@@ -18,6 +18,6 @@
   }
   else{
     echo "<script> alert('Invalid Password or Username');</script>";
-    echo "<script>location.href='Branch_login.html'</script>";
+    echo "<script>location.href='Branch.php'</script>";
   }
  ?> 

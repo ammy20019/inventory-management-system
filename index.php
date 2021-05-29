@@ -145,7 +145,7 @@ input[type=submit]:active {
             </div><!--/ lower-->
         </form>
         <br>
-        <div style="color: white;">If you are Branch Manager: <a href="./Branch/Branch_login.php">Login Here</a></div>
+        <div style="color: white;">If you are Branch Manager: <a href="./Branch/Branch.php">Login Here</a></div>
     </div><!--/ container-->
     <!-- End Page Content -->
 </body>
