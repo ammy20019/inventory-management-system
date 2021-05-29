@@ -6,7 +6,7 @@ if(isset($_SESSION['name'])){
 }
 else{
     echo " <script>alert('username or password is incorrect.')</script>";
-    echo "<script>location.href='Admin_login.html'</script>";
+    echo "<script>location.href='index.php'</script>";
 }
 
 ?>
@@ -14,7 +14,7 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Delete</title>
 <style>
   label{
     font-weight: bold;

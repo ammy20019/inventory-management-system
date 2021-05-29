@@ -16,6 +16,6 @@
   }
   else{
     echo "<script>alert('Incorrect credentials');</script>";
-    echo "<script>location.href='Admin_login.html'</script>";
+    echo "<script>location.href='index.php'</script>";
   }
  ?> 

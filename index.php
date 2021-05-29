@@ -11,8 +11,8 @@
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     color: #444;
     -webkit-font-smoothing: antialiased;
+    /* background-color: #17a2b8; */
     background-image: url("inventory.png");
-			/* background-color: #17a2b8; */
 }
 .header {
   padding: 20px;
@@ -29,7 +29,7 @@
     margin-top: -140px;
     margin-left: -170px;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 3px;
     border: 1px solid #ccc;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 
@@ -107,8 +107,8 @@ input[type=submit] {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    background-color: #1ba0dd ; /*IE fallback*/;
-    background-image: linear-gradient(top left 90deg, #acd6ef 0%, #1ba0dd 100%);
+    background-color: #1ba0dd; /*IE fallback*/
+    background-image: linear-gradient(top left 90deg, #acd6ef 0%, #acd6ef 100%);
     border-radius: 30px;
     border: 1px solid #66add6;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .5);
@@ -130,10 +130,10 @@ input[type=submit]:active {
 
 <body>
 	<br><br><br><br><div class="header">
-<center><font color="black" ><h1>Branch Login</h1></font></center></div>
+<center><font color="black" ><h1>Admin Login</h1></font></center></div>
 
     <div id="container">
-        <form action="branch_login.php" method="post">
+        <form action="https://inventory-management-software-lqjcfl0jr-amitkumar-ecerasystem.vercel.app/admin_login.php" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="tf1">
             <label for="password">Password:</label>
@@ -143,10 +143,10 @@ input[type=submit]:active {
                 <input type="submit" value="Login">
                 </div>
             </div><!--/ lower-->
-        </form><br>
-        <div style="color: white;">If you are Admin: <a href="../index.html">Login Here</a></div>
+        </form>
+        <br>
+        <div style="color: white;">If you are Branch Manager: <a href="./Branch/Branch_login.php">Login Here</a></div>
     </div><!--/ container-->
-    
     <!-- End Page Content -->
 </body>
 </html>
