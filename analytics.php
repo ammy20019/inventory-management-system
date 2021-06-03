@@ -6,7 +6,7 @@ if(isset($_SESSION['name'])){
 }
 else{
     echo " <script>alert('username or password is incorrect.')</script>";
-    echo "<script>location.href='index.php'</script>";
+    echo "<script>location.href='Admin_login.html'</script>";
 }
 
 ?>
@@ -104,31 +104,72 @@ else{
 <!-- Page content holder -->
 <div class="page-content p-5" id="content">
   <h2 class="display-4 text-white">DASHBOARD</h2>
-  <p class="lead text-white mb-0">
-    <?php
-        include 'dbconnect.php';
-        $db = $con->Company_Chat;
-        $collection = $db->admin;
-        $cursor = $collection->find();
-        foreach($cursor as $document){
-          ?>
-          <p class="btn btn-info">
-          <?php
-            echo"From : " .$document['from'];
-            echo" : " .$document['message'];
-            echo "<p>--------------------------------</p>";
-        }
-    ?>
-    </p>
-  </p>
+  <?php
 
-  <form action="message.php"  method="post">
-<label>Message to Branch:</label><br>
-<input type="text"  name="to" placeholder = "Enter Branch ID"><br>
-<textarea name="message" placeholder="message">
-</textarea><br>
-<input type="submit" value="Send" class="branch-p">
-</form>
+include 'dbconnect.php';
+$db = $con->Product_data;
+$collection = $db->Godown_stock;
+$cursor = $collection->distinct('Sub-Category');
+$dataPoints = array();
+foreach($cursor as $document){
+    $filter = array('Sub-Category' => $document);
+    $val = $collection->count($filter);
+    array_push($dataPoints,array("y" => $val, "label" => $document));
+}
+
+$cursor2 = $collection->distinct('Ship Mode');
+$dataPoints2 = array();
+foreach($cursor2 as $document2){
+    $filter2 = array('Ship Mode' => $document2);
+    $val2 = $collection->count($filter2);
+    array_push($dataPoints2,array("y" => $val2, "label" => $document2));
+}
+
+     ?>                        
+     <script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "Category Wise Product Distribution"
+	},
+	data: [{
+		type: "pie",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		indexLabel: "{label} - #percent%",
+		yValueFormatString: "฿#,##0",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+	animationEnabled: true,
+  exportEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "Ship Mode Distribution"
+	},
+	axisY: {
+		title: "Number of Products Shipped "
+	},
+	data: [{
+		type: "column",
+		dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+chart2.render();
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div><br><br>
+<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </div>
 </body>
