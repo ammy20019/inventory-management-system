@@ -84,7 +84,7 @@ else{
                 Add Branch
             </a>
     </li>
-    <li class="nav-item">
+        <li class="nav-item">
       <a href="analytics.php" class="nav-link text-dark font-italic">
                 <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
                 Analytics
@@ -200,8 +200,7 @@ else{
     $pid='';
    }
   
-
  ?> 
-
+ <input type="button" value="Click for adding New Category" class="insert-p" onclick="window.location='insert_n.php'">
 </body>
 </html> 

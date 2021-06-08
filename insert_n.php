@@ -15,6 +15,16 @@ else{
 <html>
 <head>
 <title>Page Title</title>
+<style>
+      .insert-p{
+    background-color:aqua;
+    border-style: none;
+    width: 290px;
+  }
+  label{
+      font-weight: bold;
+  }
+    </style>
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -94,52 +104,88 @@ else{
 <!-- Page content holder -->
 <div class="page-content p-5" id="content">
 
-  <h2 class="display-4 text-white">Update</h2>
-  <p class="lead text-white mb-0">Which product you want to update?</p><br>
+  <h2 class="display-4 text-white">Insert</h2>
+  <p class="lead text-white mb-0">Insert a new product to the inventory?</p><br>
   <div id="container">
-        <form action="update_p.php" method="post">
-            <input type="text" name="pid" placeholder="Product ID"><br><br>
-            <select name='column' placeholder="Select Column you want to update">
-            <option value='Ship Date'>Ship Date</option>
-            <option value='Ship Mode'>Ship Mode</option>
-            <option value='Quantity'>Quantity</option>
-            <option value='Category'>Category</option>
-            <option value='Sub-Category'>Sub-Category</option>
-            <option value='Product Name'>Product Name</option>
-            <option value='Price'>Price</option>
-            <br><br><input type="text" name="value" placeholder="Enter Value"><br><br>
-            <input type="submit" value="Update" class="search-p">
+  <form action="insert_p.php" method="post">
+            <label>Order ID:</label>
+            <input type="text" name="orderid">
+             <label style="margin-left:10px">Ship Date:</label>
+            <input type="text" name="shipdate" placeholder="DD/MM/YYYY">
+
+            <?php 
+                //Connecting MongoDB and to database and coolection
+                include 'dbconnect.php';
+                $db = $con->Product_data;
+                $collection = $db->Godown_stock;
+
+                //iterator Ship Mode
+                $cursor = $collection->distinct('Ship Mode');
+                echo"<label>Choose a Ship Mode:</label>";
+                echo"<select name='shipmode' id='shipmode'>";
+                foreach($cursor as $document){
+                    echo"<option value='$document'>$document</option>";
+                }
+            ?>
+            </select><br><br>
+            <label >Quantity:</label>
+            <input type='text' name='quantity'>
+            <label style='margin-left:10px'>Product ID:</label>
+            <input type='text' name='productid'>
+            <label >Category:</label>
+            <input type='text' name='categories'>
+            <label >Sub-Category:</label>
+            <input type='text' name='SubCategory'>
+            <label  >Product Name:</label>
+            <input type="text" name="pname">
+            <label >Price:</label>
+            <input type="text" name="price">
+            <input type="submit" value="Insert" class="insert-p">
         </form>
     </div> <br><br>
 
 
+
 <?php 
+    //Connecting MongoDB and to database and coolection
     include 'dbconnect.php';
     $db = $con->Product_data;
     $collection = $db->Godown_stock;
 
-    if(!empty($_POST['pid'])){ 
+    if(!empty($_POST['orderid'])){ 
+        $orderid = $_POST['orderid'];
+        $shipdate = $_POST['shipdate'];
+        $shipmode = $_POST['shipmode'];
+        $quantity = $_POST['quantity'];
+        $productid = $_POST['productid'];
+        $categories = $_POST['categories'];
+        $SubCategory = $_POST['SubCategory'];
+        $pname = $_POST['pname'];
+        $price = $_POST['price'];
 
-        $pid=$_POST["pid"];
-        $column=$_POST["column"];
-        $value =$_POST["value"];
+        $insertOneResult = $collection->insertOne([
+            'Order ID' => $orderid,
+            'Ship Date' => $shipdate,
+            'Ship Mode' => $shipmode,
+            'Quantity' => $quantity,
+            'Product ID' => $productid,
+            'Ship Mode' => $shipmode,
+            'Category' => $categories,
+            'Sub-Category' => $SubCategory,
+            'Product Name' => $pname,
+            'Price' => $price,
+        ]);
 
-        $cursor = $collection->updateOne(['Product ID'=> $pid],['$set'=>[$column=>$value]]);
-        echo "<script>alert('Updated Data');</script>";
+        echo "<script>alert('Inserted Data');</script>";
+        printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
+
    }
    
    if(empty($_POST['pid'])){
     $pid='';
    }
-    
-    // $pass=$_POST["tf2"]; 
-    // $Query = array('Product ID' => $pid);
-
-    //iterator
-    
-
+  
  ?> 
- </table>
-</div>
+ <input type="button" value="Click for Exsisting Categories" class="insert-p" onclick="window.location='insert_p.php'">
 </body>
 </html> 

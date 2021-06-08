@@ -14,7 +14,7 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-<title>Delete</title>
+<title>Page Title</title>
 <style>
   label{
     font-weight: bold;
@@ -83,7 +83,7 @@ else{
                 Add Branch
             </a>
     </li>
-    <li class="nav-item">
+        <li class="nav-item">
       <a href="analytics.php" class="nav-link text-dark font-italic">
                 <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
                 Analytics
@@ -118,18 +118,6 @@ else{
 <input type="submit" value="Delete" class="search-p1">
 </form>
     </div> <br><br>
-
-    <table>        
-      <tr>
-      <th>Product ID</th>
-      <th>Product Name</th>
-      <th>Ship Date</th>
-      <th>Category</th>
-      <th>Sub-Category</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      </tr>
-
 
 <?php 
     include 'dbconnect.php';
