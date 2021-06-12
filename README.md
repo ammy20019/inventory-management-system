@@ -1,7 +1,7 @@
 # Inventory Management System 🏢
-#### No_SQL_project
+###### No_SQL_project
 
-### Live Project : <a href="https://ims-nosql.herokuapp.com/index.php">Inventory Mnagement System</a>
+##### Live Project : <a href="https://ims-nosql.herokuapp.com/index.php">Click Here</a>
 
 ### Abstract 💾
 This report is based on the project we have done, which is called Inventory Management Software. This is developed mostly based on the trending NoSQL solution MongoDB. The main use of the above mentioned software is for the retailers who want to manage their product stocks among their various branches. The project is with a well understandable user interface with well formed security. The total code for this project can be found here. Since the NoSQL solution is MongoDB we can say that our software is able to manage heavy data efficiently. Presently for the demo purpose we have initiated the software with 1k rows of data. With our software the stock manager can check for the products in the company's godown as well as insert, delete, update the products. We also have employed a chat feature for the go down manager and branch manager. Branch office has a separate module which is used for checking the product data present in the branch. This module also has the ability to insert, update the stock present in the branch.
