@@ -64,10 +64,10 @@ Branch Login page: This page is exclusively for branch manager login. The branch
 ### Update Product
 ![Test Image 5](https://github.com/ammy20019/inventory-management-system/blob/master/Snaps/s6.png)
 
-### Delete
+### Analytics
 ![Test Image 5](https://github.com/ammy20019/inventory-management-system/blob/master/Snaps/s9.png)
 
-### Analytcs
+### Delete
 ![Test Image 5](https://github.com/ammy20019/inventory-management-system/blob/master/Snaps/s7.png)
 
 ### Add New Branch for the inventory
