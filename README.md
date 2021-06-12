@@ -1,10 +1,9 @@
 # No_SQL_project
 
-### Create dbconnect.php file with following details
-<?php 
-require_once __DIR__ . '/mongo/vendor/autoload.php';
+### Create dbconnect.php file with following code:
+
+require_once __DIR__ . '/mongo/vendor/autoload.php';<br>
  $con = new MongoDB\Client("mongodb://localhost:27017");
- ?>
 
 We are doing a Sales mannagment project using php and MongoDB for our NoSql course project.
 
